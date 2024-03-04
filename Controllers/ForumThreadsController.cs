@@ -46,11 +46,21 @@ namespace AnonymousForum.Controllers
         }
 
         // GET: ForumThreads/Create
-        public IActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("ReplyId,Content,ForumThreadId")] Reply reply)
         {
-            ViewData["TopicId"] = new SelectList(_context.Topics, "TopicId", "Name");
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Add(reply);
+                await _context.SaveChangesAsync();
+                // Assuming you have a Details view in ForumThreadsController that shows the thread along with its replies
+                return RedirectToAction("ThreadDetailsWithReplies", "ForumThreads", new { id = reply.ForumThreadId });
+            }
+            ViewData["ForumThreadId"] = new SelectList(_context.ForumThreads, "ForumThreadId", "Title", reply.ForumThreadId);
+            return View(reply);
         }
+
 
         // POST: ForumThreads/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -159,6 +169,27 @@ namespace AnonymousForum.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> ThreadDetailsWithReplies(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var forumThread = await _context.ForumThreads
+                .Include(t => t.Replies)
+                .Include(t => t.Topic)
+                .FirstOrDefaultAsync(m => m.ForumThreadId == id);
+
+            if (forumThread == null)
+            {
+                return NotFound();
+            }
+
+            return View(forumThread);
+        }
+
 
         private bool ForumThreadExists(int id)
         {

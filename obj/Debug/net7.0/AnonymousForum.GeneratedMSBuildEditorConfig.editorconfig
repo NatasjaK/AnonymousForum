@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1UaHJlYWRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/natas/Documents/Chas/CSharp/AnonymousForum/Views/ForumThreads/ThreadDetailsWithReplies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1UaHJlYWRzXFRocmVhZERldGFpbHNXaXRoUmVwbGllcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/natas/Documents/Chas/CSharp/AnonymousForum/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,6 +94,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/natas/Documents/Chas/CSharp/AnonymousForum/Views/Topics/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/natas/Documents/Chas/CSharp/AnonymousForum/Views/Topics/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXFNob3cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/natas/Documents/Chas/CSharp/AnonymousForum/Views/_ViewImports.cshtml]
