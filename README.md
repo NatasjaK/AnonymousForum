@@ -23,7 +23,7 @@ This selection of topics is designed to spark curiosity and facilitate knowledge
 - **Interactive Threads and Replies**
 - **Input Validation**
 - **Optimized Code and Data Design**
-- 
+  
 ## Getting Started
 
 ### Prerequisites
