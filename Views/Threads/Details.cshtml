@@ -1,0 +1,101 @@
+﻿@model AnonymousForum.Models.ViewModels.TopicThreadReplyViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    var isAuthenticated = Context.Session.GetString("IsAuthenticated");
+}
+
+<h1 class="card-title">Thread's Details</h1>
+
+<div class="thread-list">
+    <ul>
+        <li class="thread-list-li">
+            <h3 class="title-style">@Html.DisplayFor(model => model.Thread.ThreadTitle)</h3>
+            <p class="description-style">@Html.DisplayFor(model => model.Thread.ThreadDescription)</p>
+            <ul class="list-unstyled">
+                <li class="topic-display">
+                    <strong>@Html.DisplayNameFor(model => model.Topic)</strong>: @Html.DisplayFor(model => model.Topic.TopicName)
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="card-title">
+    <h4>Replies</h4>
+    <hr />
+    @foreach (var reply in Model.Replies)
+    {
+        <div class="reply-container">
+            <p class="reply-title">@reply.ReplyTitle</p>
+            <p class="reply-description">@reply.ReplyDescription</p>
+        </div>
+    }
+
+    @if (isAuthenticated != "true")
+    {
+        <div class="reply-actions">
+            <a href="@Url.Action("Create", "Replies", new { FkThreadId = Model.Thread.ThreadId })" class="custom-button">Create New Reply</a>
+        </div>
+    }
+</div>
+
+<a asp-action="Index" asp-controller="Replies" class="back-link">Back to previous page</a>
+
+<style>
+
+
+    .topic-display {
+        font-style: italic;
+    }
+
+    .reply-container {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        padding: 10px;
+        background-color: #f8f8f8;
+    }
+
+    .reply-title {
+        font-weight: bold;
+        color: #124559;
+        font-size: 18px;
+    }
+
+    .reply-description {
+        color: #124559;
+        font-size: 16px;
+    }
+
+    .reply-actions {
+        margin-top: 10px;
+    }
+
+        .reply-actions .btn {
+            margin-right: 10px;
+        }
+
+    .custom-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 1rem;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .custom-button:hover {
+            background-color: #124559;
+            color: #fff;
+        }
+
+</style>

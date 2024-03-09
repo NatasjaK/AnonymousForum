@@ -1,33 +1,34 @@
-﻿@model IEnumerable<AnonymousForum.Models.Topic>
+﻿@model IEnumerable<AnonymousForum.Models.Thread>
 
 @{
     ViewData["Title"] = "Index";
 }
 
+<h1 class="card-sub" style="padding-left:2rem">Threads</h1>
+
 <div class="container">
-
-    <div class="card-sub">
-        @Html.DisplayNameFor(model => model.TopicName)
-    </div>
-
     <ul class="topic-list-ul">
         @foreach (var item in Model)
         {
             <li class="topic-list-item">
 
                 <div class="topic-name">
-                    @Html.DisplayFor(modelItem => item.TopicName)
+                    @Html.DisplayFor(modelItem => item.ThreadTitle)
+                </div>
+
+                <div class="topic-description">
+                    @Html.DisplayFor(modelItem => item.ThreadDescription)
                 </div>
 
                 <div class="button-container">
-                    <a asp-action="Edit"
-                       asp-route-id="@item.TopicId"
+                    <a asp-action="Details"
+                       asp-route-id="@item.ThreadId"
                        class="button-link">
-                        Edit
+                        Details
                     </a>
 
                     <a asp-action="Delete"
-                       asp-route-id="@item.TopicId"
+                       asp-route-id="@item.ThreadId"
                        class="button-link">
                         Delete
                     </a>
@@ -35,14 +36,5 @@
             </li>
         }
     </ul>
-
-    <p>
-        <a asp-action="Create"
-           class="custom-button">
-            Create New
-        </a>
-    </p>
-
 </div>
-
 

@@ -1,0 +1,24 @@
+﻿@model List<AnonymousForum.Models.Thread>
+
+
+
+
+
+<h1 class="card-sub">Threads for Selected Topic</h1>
+
+<ul class="thread-list">
+    @foreach (var thread in Model)
+    {
+        <li>
+            <a href="@Url.Action("Details", "Threads", new { id = thread.ThreadId })" class="thrd-a">@thread.ThreadTitle</a>
+            <div class="spacer">@thread.ThreadDescription</div>
+        </li>
+    }
+</ul>
+<div class="btn">
+    <a asp-action="Create" class="custom-button">Create New</a>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Home" class="back-link">Back to Topics</a>
+</div>

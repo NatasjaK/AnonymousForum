@@ -12,9 +12,9 @@ namespace AnonymousForum.Controllers
 {
     public class TopicsController : Controller
     {
-        private readonly ForumContext _context;
+        private readonly AnonymousForumContext _context;
 
-        public TopicsController(ForumContext context)
+        public TopicsController(AnonymousForumContext context)
         {
             _context = context;
         }
@@ -22,27 +22,9 @@ namespace AnonymousForum.Controllers
         // GET: Topics
         public async Task<IActionResult> Index()
         {
-              return _context.Topics != null ? 
-                          View(await _context.Topics.ToListAsync()) :
-                          Problem("Entity set 'ForumContext.Topics'  is null.");
-        }
-
-        // GET: Topics/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Topics == null)
-            {
-                return NotFound();
-            }
-
-            var topic = await _context.Topics
-                .FirstOrDefaultAsync(m => m.TopicId == id);
-            if (topic == null)
-            {
-                return NotFound();
-            }
-
-            return View(topic);
+            return _context.Topics != null ?
+                        View(await _context.Topics.ToListAsync()) :
+                        Problem("Entity set 'AnonymousForumContext.Topics'  is null.");
         }
 
         // GET: Topics/Create
@@ -52,11 +34,9 @@ namespace AnonymousForum.Controllers
         }
 
         // POST: Topics/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TopicId,Name")] Topic topic)
+        public async Task<IActionResult> Create([Bind("TopicId,TopicName")] Topic topic)
         {
             if (ModelState.IsValid)
             {
@@ -84,11 +64,9 @@ namespace AnonymousForum.Controllers
         }
 
         // POST: Topics/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TopicId,Name")] Topic topic)
+        public async Task<IActionResult> Edit(int id, [Bind("TopicId,TopicName")] Topic topic)
         {
             if (id != topic.TopicId)
             {
@@ -143,21 +121,21 @@ namespace AnonymousForum.Controllers
         {
             if (_context.Topics == null)
             {
-                return Problem("Entity set 'ForumContext.Topics'  is null.");
+                return Problem("Entity set 'AnonymousForumContext.Topics'  is null.");
             }
             var topic = await _context.Topics.FindAsync(id);
             if (topic != null)
             {
                 _context.Topics.Remove(topic);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TopicExists(int id)
         {
-          return (_context.Topics?.Any(e => e.TopicId == id)).GetValueOrDefault();
+            return (_context.Topics?.Any(e => e.TopicId == id)).GetValueOrDefault();
         }
     }
 }

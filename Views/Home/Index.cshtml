@@ -1,17 +1,11 @@
+﻿
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container mt-5">
-    <h1 class="display-4 text-center">Welcome to the Anonymous Forum</h1>
-    <p class="lead text-center">Select a topic to explore discussions:</p>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-                <a href="/Topics/Show/1" class="list-group-item list-group-item-action">Artificial Intelligence</a>
-                <a href="/Topics/Show/2" class="list-group-item list-group-item-action">Space Exploration</a>
-                <a href="/Topics/Show/3" class="list-group-item list-group-item-action">Social Media</a>
-            </div>
-        </div>
-    </div>
+
+<div class="text-center">
+    <h1 class="display-header">Welcome To Anonymous Forum</h1>
 </div>
+
+<partial name="_TopicList" model="Model" />

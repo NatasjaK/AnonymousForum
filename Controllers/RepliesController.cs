@@ -12,9 +12,9 @@ namespace AnonymousForum.Controllers
 {
     public class RepliesController : Controller
     {
-        private readonly ForumContext _context;
+        private readonly AnonymousForumContext _context;
 
-        public RepliesController(ForumContext context)
+        public RepliesController(AnonymousForumContext context)
         {
             _context = context;
         }
@@ -22,8 +22,8 @@ namespace AnonymousForum.Controllers
         // GET: Replies
         public async Task<IActionResult> Index()
         {
-            var forumContext = _context.Replies.Include(r => r.ForumThread);
-            return View(await forumContext.ToListAsync());
+            var anonymousForumContext = _context.Replies.Include(r => r.Thread);
+            return View(await anonymousForumContext.ToListAsync());
         }
 
         // GET: Replies/Details/5
@@ -35,7 +35,7 @@ namespace AnonymousForum.Controllers
             }
 
             var reply = await _context.Replies
-                .Include(r => r.ForumThread)
+                .Include(r => r.Thread)
                 .FirstOrDefaultAsync(m => m.ReplyId == id);
             if (reply == null)
             {
@@ -46,26 +46,24 @@ namespace AnonymousForum.Controllers
         }
 
         // GET: Replies/Create
-        public IActionResult Create()
+        public IActionResult Create(int fkThreadId)
         {
-            ViewData["ForumThreadId"] = new SelectList(_context.ForumThreads, "ForumThreadId", "Title");
+            ViewData["FkThreadId"] = new SelectList(_context.Threads, "ThreadId", "ThreadTitle", fkThreadId);
             return View();
         }
 
         // POST: Replies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReplyId,Content,ForumThreadId")] Reply reply)
+        public async Task<IActionResult> Create([Bind("ReplyId,ReplyTitle,ReplyDescription,FkThreadId")] Reply reply)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(reply);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Threads", new { id = reply.FkThreadId });
             }
-            ViewData["ForumThreadId"] = new SelectList(_context.ForumThreads, "ForumThreadId", "Title", reply.ForumThreadId);
+            ViewData["FkThreadId"] = new SelectList(_context.Threads, "ThreadId", "ThreadTitle", reply.FkThreadId);
             return View(reply);
         }
 
@@ -82,16 +80,14 @@ namespace AnonymousForum.Controllers
             {
                 return NotFound();
             }
-            ViewData["ForumThreadId"] = new SelectList(_context.ForumThreads, "ForumThreadId", "Title", reply.ForumThreadId);
+            ViewData["FkThreadId"] = new SelectList(_context.Threads, "ThreadId", "ThreadDescription", reply.FkThreadId);
             return View(reply);
         }
 
         // POST: Replies/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReplyId,Content,ForumThreadId")] Reply reply)
+        public async Task<IActionResult> Edit(int id, [Bind("ReplyId,ReplyTitle,ReplyDescription,FkThreadId")] Reply reply)
         {
             if (id != reply.ReplyId)
             {
@@ -118,7 +114,7 @@ namespace AnonymousForum.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ForumThreadId"] = new SelectList(_context.ForumThreads, "ForumThreadId", "Title", reply.ForumThreadId);
+            ViewData["FkThreadId"] = new SelectList(_context.Threads, "ThreadId", "ThreadDescription", reply.FkThreadId);
             return View(reply);
         }
 
@@ -131,7 +127,7 @@ namespace AnonymousForum.Controllers
             }
 
             var reply = await _context.Replies
-                .Include(r => r.ForumThread)
+                .Include(r => r.Thread)
                 .FirstOrDefaultAsync(m => m.ReplyId == id);
             if (reply == null)
             {
@@ -148,21 +144,21 @@ namespace AnonymousForum.Controllers
         {
             if (_context.Replies == null)
             {
-                return Problem("Entity set 'ForumContext.Replies'  is null.");
+                return Problem("Entity set 'AnonymousForumContext.Replies'  is null.");
             }
             var reply = await _context.Replies.FindAsync(id);
             if (reply != null)
             {
                 _context.Replies.Remove(reply);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReplyExists(int id)
         {
-          return (_context.Replies?.Any(e => e.ReplyId == id)).GetValueOrDefault();
+            return (_context.Replies?.Any(e => e.ReplyId == id)).GetValueOrDefault();
         }
     }
 }

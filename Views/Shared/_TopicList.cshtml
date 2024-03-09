@@ -1,0 +1,25 @@
+﻿@model IEnumerable<AnonymousForum.Models.Topic>
+
+<table class="topic-list-table">
+    <thead>
+        <tr>
+            <th class="card-sub">
+                @Html.DisplayNameFor(model => model.TopicName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("TopicThreads", "Threads",
+                        new { id = item.TopicId })">
+                        @Html.DisplayFor(modelItem => item.TopicName)
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

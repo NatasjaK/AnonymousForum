@@ -1,0 +1,65 @@
+﻿@{
+    var isAuthenticated = Context.Session.GetString("IsAuthenticated");
+    var username = Context.Session.GetString("Username");
+}
+
+
+@if (isAuthenticated == "true")
+{
+    <form asp-controller="Account"
+          asp-action="Logout"
+          method="post"
+          style="display:flex; flex-direction:row; align-items:center; gap: 10px;">
+
+        <div class="navbar-text" style="color: #305F72;">
+            <!-- Adjusted color -->
+            Welcome, @username!
+        </div>
+
+        <button type="submit"
+                class="btn btn-default"
+                style="background-color: #FF6B6B; color: white; border: none;">
+            <!-- Adjusted colors and border -->
+            Logout
+        </button>
+    </form>
+}
+else
+{
+    <form asp-controller="Account"
+          asp-action="Login"
+          method="post"
+          class="navbar-nav flex-grow-1"
+          style="display: flex; gap: 10px; align-items: center;">
+
+        <div class="form-group">
+            <input type="text"
+                   name="username"
+                   placeholder="Username"
+                   class="form-control"
+                   autocomplete="on"
+                   required
+                   style="margin-right:10px;"> <!-- Styling adjustments for consistency -->
+        </div>
+
+        <div class="form-group">
+            <input type="password"
+                   name="password"
+                   placeholder="Password"
+                   class="form-control"
+                   autocomplete="off"
+                   required
+                   style="margin-right:10px;"> <!-- Styling adjustments for consistency -->
+        </div>
+
+        <button type="submit"
+                class="btn"
+                style="background-color: #FF6B6B; color: white; border: none;">
+            <!-- Adjusted colors to match theme -->
+            Login
+        </button>
+    </form>
+}
+
+
+
