@@ -3,16 +3,16 @@
 .display-header {
     margin-top: 0;
     margin-bottom: 1rem;
-    font-size: 2.5rem; /* Adjusted for optimal readability */
+    font-size: 2.5rem; 
     background-color: #FF6B6B; /* Coral pink */
 
-    color: #ffffff; /* Bright white for contrast */
-    padding-top: 40px; /* Increased for better visual balance */
-    padding-bottom: 40px; /* Increased for better visual balance */
-    font-weight: 400; /* Slightly bolder for emphasis */
+    color: #ffffff; 
+    padding-top: 40px; 
+    padding-bottom: 40px; 
+    font-weight: 400; 
     line-height: 1.2;
-    border-bottom: 5px solid #FFCBA4; /* Softer peach accent border */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Soft shadow for depth */
+    border-bottom: 5px solid #FFCBA4; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
 }
 
 html {
@@ -198,18 +198,6 @@ body {
         color: #fff;
     }
 
-    /*    .button.edit {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-    }
-
-    .button.details {
-        background-color: #008CBA;
-        color: white;
-        border: none;
-    } */
-
     .button.delete {
         background-color: #f44336;
         color: white;
@@ -247,7 +235,7 @@ topic-list-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
 }
 
 .topic-list-table th, .topic-list-table td {
@@ -256,26 +244,26 @@ topic-list-table {
 }
 
 .topic-list-table th {
-    background-color: #FFCBA4; /* Softer peach accent */
-    color: #333; /* Dark text for readability */
+    background-color: #FFCBA4;
+    color: #333; 
 }
 
 .topic-list-table td {
-    background-color: #FFFFFF; /* Bright background for a clean look */
-    color: #555; /* Soft text color */
+    background-color: #FFFFFF; 
+    color: #555; 
 }
 
 .topic-list-table tr:hover {
-    background-color: #FFF0F0; /* Very light pink for hover, adding warmth */
+    background-color: #FFF0F0;
 }
 
 .topic-list-table a {
-    color: #FF6B6B; /* Link color matches header */
+    color: #FF6B6B;
     text-decoration: none;
 }
 
     .topic-list-table a:hover {
-        color: #FFCBA4; /* Hover color matches table header for consistency */
+        color: #FFCBA4; 
     }
 
 .card-title {
@@ -283,12 +271,12 @@ topic-list-table {
     color: #FF6B6B; /* Coral Pink for titles */
     font-weight: 500;
     padding: 2rem;
-    margin-bottom: 0; /* Eliminates extra space below the title for tighter layout */
+    margin-bottom: 0; 
 }
 
 .thread-list {
     list-style-type: none;
-    padding-left: 0; /* Removes default padding */
+    padding-left: 0; 
 }
 
     .thread-list li {
@@ -297,12 +285,12 @@ topic-list-table {
         border-radius: 5px;
         padding: 2rem;
         margin-right: 2rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds subtle depth */
-        transition: transform 0.2s; /* Smooth transition for hover effect */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        transition: transform 0.2s; 
     }
 
         .thread-list li:hover {
-            transform: translateY(-5px); /* Slight lift effect on hover */
+            transform: translateY(-5px); 
             background-color: #FFCBA4; /* Soft peach for hover state for an interactive feel */
         }
 
@@ -413,11 +401,11 @@ topic-list-table {
     }
 
 .nav-link {
-    font-weight: bold; /* Makes the text bold */
-    font-size: 1.25rem; /* Increases the font size */
+    font-weight: bold; 
+    font-size: 1.25rem; 
 }
 
-/* Adjusts the toggle icon color */
+
 .navbar-toggler {
     border-color: #FFCBA4; /* Soft Peach for toggle border */
 }
@@ -426,10 +414,10 @@ topic-list-table {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' width='30' height='30'><path stroke='#FFFFFF' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
 
-/* Footer Styling to match */
+
 .footer {
     background-color: #FFCBA4; /* Soft Peach */
-    color: #333; /* For readable text */
+    color: #333; 
 }
 
     .footer a {
@@ -440,7 +428,7 @@ topic-list-table {
             color: #FF6B6B; /* Coral Pink for hover */
         }
 
-/* Privacy Policy Styling */
+
 .privacy-policy-container {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -481,9 +469,9 @@ topic-list-table {
             text-decoration: underline;
         }
 
-/* Add this to your site.css or AnonymousForum.styles.css */
+
 .nav-link-special {
-    font-weight: 350; !important; /* Makes the text bold */
-    font-size: 1.25rem !important; /* Increases the font size */
+    font-weight: 350; !important; 
+    font-size: 1.25rem !important; 
 }
 

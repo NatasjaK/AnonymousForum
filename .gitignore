@@ -1,0 +1,11 @@
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace AnonymousForum
+# Ignore any files in /bin and /obj Folders
+**/bin/*
+**/obj/*
+**/Migrations/*
+.vs/
+**/Service/*
+AnonymousForum/.vs
+appsettings.Development.json
